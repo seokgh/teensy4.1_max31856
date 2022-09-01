@@ -7,12 +7,15 @@
 #include <MAX31856.h>
 #include <Streaming.h>
 
-MAX31856 tc1(10);	// CS pin
+MAX31856 tc1(10);	// choise the CS pin
 
 int main(void)
 {
 	Serial.begin(115200);
+
+	Serial << endl;
 	Serial << "\n" __FILE__ " " __DATE__ " " __TIME__ "\n" << endl;
+
 	delay(1000);
 
 	tc1.begin();
@@ -24,19 +27,30 @@ int main(void)
 	tc1.read();
 	tc1.dumpRegs();
 
-	//Serial << F("CJ Fault  ") << tc1.getCJHF_C() << F("C ") << tc1.getCJHF_F() << F("F  ");
-	//Serial << tc1.getCJLF_C() << F("C ") << tc1.getCJLF_F() << F("F\n");
-	//Serial << F("TC Fault  ") << tc1.getLTHFT_C() << F("C ") << tc1.getLTHFT_F() << F("F  ");
-	//Serial << tc1.getLTLFT_C() << F("C ") << tc1.getLTLFT_F() << F("F\n");
-	//Serial << F("CJ Offset ") << tc1.getCJTO_C() << F("C ") << tc1.getCJTO_F() << F("F\n");
+	//
+	Serial << "CJ Fault  " << tc1.getCJHF_C() << "C (" << tc1.getCJHF_F() << "F)  ";
+	Serial << tc1.getCJLF_C() << "C (" << tc1.getCJLF_F() << "F)";
+	Serial << endl;
 
-	while(1) {
-		delay(1000);
+	//
+	Serial << "TC Fault  " << tc1.getLTHFT_C() << "C (" << tc1.getLTHFT_F() << "F)  ";
+	Serial << tc1.getLTLFT_C() << "C (" << tc1.getLTLFT_F() << "F)";
+	Serial << endl;
+
+	//
+	Serial << "CJ Offset " << tc1.getCJTO_C() << "C (" << tc1.getCJTO_F() << "F)";
+	Serial << endl;
+
+	while (1) {
+		delay(3000);
 		tc1.read();
 		Serial << endl;
 		tc1.dumpRegs();
-		//Serial << F("CJ Temp ") << tc1.getCJT_C() << F("C ") << tc1.getCJT_F() << F("F\n");
-		//Serial << F("TC Temp ") << tc1.getLTCT_C() << F("C ") << tc1.getLTCT_F() << F("F\n");
+
+		Serial << "CJ Temp " << tc1.getCJT_C() << "C (" << tc1.getCJT_F() << "F)";
+		Serial << endl;
+		Serial << "TC Temp " << tc1.getLTCT_C() << "C (" << tc1.getLTCT_F() << "F)\n";
+		Serial << endl;
 	}
 }
 

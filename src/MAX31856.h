@@ -1,12 +1,11 @@
-// Arduino MAX31856 Library
-// https://github.com/JChristensen/jc_MAX31856
-// Copyright (C) 2019 by Jack Christensen and licensed under
-// GNU GPL v3.0, https://www.gnu.org/licenses/gpl.html
+// Teensy MAX31856 Library
+//
+// Copyright (C) 2022 Unastella.co
+// gwangho.seok@unastella.co
+//
 
-#ifndef JC_MAX31856_H_INCLUDED
-#define JC_MAX31856_H_INCLUDED
-//#include <Arduino.h>
-//#include <SPI.h>
+#ifndef MAX31856_H_INCLUDED
+#define MAX31856_H_INCLUDED
 
 #if defined(ARDUINO)
 #include <Arduino.h>
@@ -22,7 +21,7 @@
 
 #include "Streaming.h"      // http://arduiniana.org/libraries/streaming/
 
-class jc_MAX31856
+class MAX31856
 {
     public:
         static const uint32_t spiFreq = 2e6;
@@ -65,7 +64,7 @@ class jc_MAX31856
         enum tctype_t {B_TYPE, E_TYPE, J_TYPE, K_TYPE, N_TYPE, R_TYPE,
                        S_TYPE, T_TYPE, GAIN8, GAIN32=12};
 
-        jc_MAX31856(uint8_t ssPin) : m_ssPin(ssPin) {}
+        MAX31856(uint8_t ssPin) : m_ssPin(ssPin) {}
         void begin();
         uint8_t read();
         void write();

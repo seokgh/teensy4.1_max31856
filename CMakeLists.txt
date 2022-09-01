@@ -48,13 +48,13 @@ if (DEFINED MCU)
 	FetchContent_MakeAvailable(eigen)
 
 	# Add the library target
-	add_library(jc_MAX31856
-		src/jc_MAX31856.cpp
-		src/jc_MAX31856.h
+	add_library(MAX31856
+		src/MAX31856.cpp
+		src/MAX31856.h
 		)
 
 	# Link libraries
-	target_link_libraries(jc_MAX31856
+	target_link_libraries(MAX31856
 		PUBLIC
 		core
 		units
@@ -62,7 +62,7 @@ if (DEFINED MCU)
 		)
 
 	# Setup include directories
-	target_include_directories(jc_MAX31856 PUBLIC
+	target_include_directories(MAX31856 PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 		$<INSTALL_INTERFACE:include>
 		)
@@ -71,7 +71,7 @@ if (DEFINED MCU)
 	# Example and test if this project is built separately
 	if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 		# Add the executable target
-		add_executable(max31856_example examples/ex01/ex01.cc)
+		add_executable(max31856_example examples/max31856_example/max31856_ex.cc)
 
 		# Add the includes
 		target_include_directories(max31856_example PUBLIC
@@ -82,7 +82,7 @@ if (DEFINED MCU)
 		# Link libraries to the example target
 		target_link_libraries(max31856_example
 			PRIVATE
-			jc_MAX31856
+			MAX31856
 			)
 		# Add hex and upload targets
 		include(${mcu_support_SOURCE_DIR}/cmake/flash_mcu.cmake)

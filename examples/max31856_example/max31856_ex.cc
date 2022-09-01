@@ -12,7 +12,7 @@ MAX31856 tc1(10);	// CS pin
 int main(void)
 {
 	Serial.begin(115200);
-	//Serial << F( "\n" __FILE__ " " __DATE__ " " __TIME__ "\n" );
+	Serial << "\n" __FILE__ " " __DATE__ " " __TIME__ "\n" << endl;
 	delay(1000);
 
 	tc1.begin();

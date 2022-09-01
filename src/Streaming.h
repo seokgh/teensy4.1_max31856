@@ -20,12 +20,6 @@
 #ifndef ARDUINO_STREAMING
 #define ARDUINO_STREAMING
 
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-//#include "WProgram.h"
-#endif
-
 #define STREAMING_LIBRARY_VERSION 5
 
 // Generic template
@@ -42,17 +36,17 @@ struct _BASED
 };
 
 #if ARDUINO >= 100
-struct _BYTE_CODE
-{
-	byte val;
-	_BYTE_CODE(byte v) : val(v)
-	{}
-};
-#define _BYTE(a)    _BYTE_CODE(a)
-inline Print &operator <<(Print &obj, const _BYTE_CODE &arg)
-{ obj.write(arg.val); return obj; }
+	struct _BYTE_CODE
+	{
+		byte val;
+		_BYTE_CODE(byte v) : val(v)
+		{}
+	};
+	#define _BYTE(a)    _BYTE_CODE(a)
+	inline Print &operator <<(Print &obj, const _BYTE_CODE &arg)
+	{ obj.write(arg.val); return obj; }
 #else
-#define _BYTE(a)    _BASED(a, BYTE)
+	#define _BYTE(a)    _BASED(a, BYTE)
 #endif
 
 #define _HEX(a)     _BASED(a, HEX)

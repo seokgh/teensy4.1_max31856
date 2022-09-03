@@ -13,10 +13,10 @@ int main(void)
 {
 	Serial.begin(115200);
 
+	delay(1000);
+
 	Serial << endl;
 	Serial << "\n" __FILE__ " " __DATE__ " " __TIME__ "\n" << endl;
-
-	delay(1000);
 
 	tc1.begin();
 	tc1.dumpRegs();

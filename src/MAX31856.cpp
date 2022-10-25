@@ -12,7 +12,7 @@ void MAX31856::begin()
 	pinMode(m_ssPin, OUTPUT);
 	digitalWrite(m_ssPin, HIGH);
 	SPI.begin();
-	read();
+	//read();
 }
 
 // read all registers from the MAX31856 (16 bytes),
